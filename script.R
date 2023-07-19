@@ -62,6 +62,7 @@ df2 <- df[-c(10,13,18,22)] #remove missing columns
 
 #Variational bayes version (not in paper)
 #explored 2,3 and 4 class models
+
 #2 class model
 #Variational algorithm
 dat <- list(I = 19, J = 227, C = 2,y = as.matrix(df2[-c(1,2)]))
@@ -309,7 +310,7 @@ mcmc_permuted_4class <-
 fit_permuted <-
   monitor(mcmc_permuted_4class, warmup = 0,  digits_summary = 3)
 
-#max likelihood comparison (using poLCA function)
+#comparison to LCA using max likelihood (poLCA function)
 #recode to categories 1 and 2
 df3 <- df2[-c(1,2)]
 df3 <- as.data.frame(ifelse(df3==0,1,2))
@@ -359,7 +360,7 @@ p2_class2 <- p_2class[c(seq(2,ncol(p_2class),by = 2))]
 p2_class1 <- gather(p2_class1,key = 'Items', value = 'Probability of Answering Yes')
 p2_class2 <- gather(p2_class2,key = 'Items', value = 'Probability of Answering Yes')
 p2_class_df <- rbind.data.frame(p2_class1,p2_class2)
-mean(p_2class$`Class 2`)
+mean(p_2class$`Class 2`) #check both classes for class label creation below
 precis(p_2class,2,probs = 0.9) #for class uncertainty (first 2 rows)
 p2_class_df$class <- rep(c('Class 1 (24%)','Class 2 (76%)'), each = 600000)
 p2_class_df$category <- NA
