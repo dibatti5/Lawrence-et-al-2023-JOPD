@@ -61,6 +61,7 @@ df2 <- df[-c(10,13,18,22)] #remove missing columns
 #Available from: https://mc-stan.org/users/documentation/case-studies/Latent_class_case_study.html#.
 
 #Variational bayes version (not in paper)
+#explored 2,3 and 4 class models
 #2 class model
 #Variational algorithm
 dat <- list(I = 19, J = 227, C = 2,y = as.matrix(df2[-c(1,2)]))
